@@ -18,10 +18,11 @@ resistances = [33000,
 
 
 def voltage_divider(r1, r2, vin):
-	vout = (vin*r2)/(r1+r2)
-	return round(vout, 3)
+    #vout = (vin*r1)/(r1+r2)
+    vout = (vin*r2)/(r1+r2)
+    return round(vout,3)
 
 for x in range(len(resistances)):
     #                                     #R1             #R2   #Vin
     print("3.3V",resistances[x], voltage_divider(4700, resistances[x], 3.3))
-    print("  5V",resistances[x], voltage_divider(10000,resistances[x], 5))
+    print("  5V",resistances[x], voltage_divider(10000,resistances[x], 5.0))
