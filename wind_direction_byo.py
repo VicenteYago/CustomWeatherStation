@@ -9,11 +9,7 @@ volts  = [0.4, 1.4, 1.2, 2.8,
           2.9, 2.2, 2.5, 1.8,
           2.0, 0.7, 0.8, 0.1,
           0.3, 0.2, 0.6, 2.7]
-          
-volts2 = [2.8, 1.9, 2.0, 0.52,
-          0.57, 0.4, 1.0, 0.7,
-          1.4, 1.3, 2.5, 2.4, 
-          3.1, 2.9, 3.0, 2.7]
+
 
 volts_dic = {
     0.4: 0.0,
@@ -59,11 +55,22 @@ def get_average(angles):
 
     return 0.0 if average == 360 else average
 
+
+def get_value(length = 5):
+  data = []
+  print("Measuring wind direction for %d seconds..." % length)
+  start_time = time.time()
+  
+  while time.time() - start_time <= length:
+    wind = round(adc.value*3.3,1)
+  
+    if not wind in volts_dic:
+      print("Unknown value :", str(wind))
+    else:
+      data.append(volts_dic[wind])
+  return get_average(data)
+
+
 while True:
-        wind = round(adc.value*3.3,1)
-        if not wind in volts_dic:
-          print("Unknown value :", str(wind))
-        else:
-          print('found: ' + str(wind) + ' ' + str(volts_dic[wind])) 
-
-
+  print(get_value())
+  
