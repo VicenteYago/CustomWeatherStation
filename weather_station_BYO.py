@@ -1,6 +1,10 @@
 from gpiozero import Button
 import math
 import time
+import bme280_sensor
+import wind_direction_byo
+import statistics
+import dsb1820_therm
 
 radius = 9.0 / 100 # in meters
 wind_interval_sec = 5 
